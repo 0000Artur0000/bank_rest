@@ -1,8 +1,30 @@
-#
-# application.yml — главный конфигурационный файл Spring Boot.
+spring:
+  application:
+    name: bank-cards
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    change-log: classpath:db/migration/db.changelog-master.yaml
 
-Что нужно сделать:
-  - Указать настройки подключения к базе данных.
-  - Указать порт приложения.
-  - Настроить параметры безопасности и JWT.
-  - Включить Swagger UI.
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    url: /openapi.yaml
+    disable-swagger-default-url: true
+
+app:
+  jwt:
+    secret: ${APP_JWT_SECRET}
+    ttl: ${APP_JWT_TTL}
+  card:
+    encryption-key: ${APP_CARD_ENCRYPTION_KEY}
+    fingerprint-key: ${APP_CARD_FINGERPRINT_KEY}
+  admin:
+    username: ${APP_ADMIN_USERNAME}
+    password: ${APP_ADMIN_PASSWORD}
