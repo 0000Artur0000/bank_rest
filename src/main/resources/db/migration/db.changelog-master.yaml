@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-init
+      author: bank-cards
+      changes:
+        - sqlFile:
+            path: 001-init.sql
+            relativeToChangelogFile: true
